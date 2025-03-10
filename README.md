@@ -22,3 +22,5 @@ https://github.com/laosrb/Project_01/
 - Functionality - Proposed Use case from transitioning from screen to screen.
 - User Experience - Proposed Use cases for each Screen
 - Iterative design – Test cases and approach to refine the improvements
+
+![Wireframe Image](https://cdn.dribbble.com/userupload/11535087/file/original-d71026beb1a90693154968a41c3404ef.png?resize=850x638&vertical=center)

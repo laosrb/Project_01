@@ -1,5 +1,5 @@
 # Project_01
-Mobile App Development Project 1 (members: Ryan B, Tiffani S.)
+Mobile App Development Project 1 (Ryan B, Tiffani S.)
 
 
 ## Proposed Group Members:

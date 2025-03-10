@@ -2,7 +2,7 @@
 Mobile App Development Project 1 (Ryan B, Tiffani S.)
 
 
-## Proposed Group Members:
+## []Proposed Group Members:
 Ryan Bouapheng & Tiffani Singleton
 
 ## Project summary:

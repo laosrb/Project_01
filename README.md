@@ -21,24 +21,25 @@ Mobile App Development Project 1 (Ryan B, Tiffani S.)
 
 ## Proposed the wireframe - a visual representation, a detailed outline of the user interface (UI)and layout of an app.
 <ins>**Wireframe Requirements**</ins>
+
 - [x] Layouts - Number and name of unique screens in Project
 - [x] Functionality - Proposed Use case from transitioning from screen to screen.
 - [x] User Experience - Proposed Use cases for each Screen
 - [x] Iterative design – Test cases and approach to refine the improvements
 
 ## Screen
-![Wireframe Image](https://cdn.dribbble.com/userupload/11535087/file/original-d71026beb1a90693154968a41c3404ef.png?resize=850x638&vertical=center)
+![Wireframe Image](images/screen)
 
 ### Home Page
-![Home Page Screenshot](https://github.com/user-attachments/assets/1c00baa1-823b-44ad-b848-4816a2d318e3)
+![Home Page Screenshot](images/home_page)
 
 ### Reminder Page
-![Settings Page Screenshot]()
+![Settings Page Screenshot](images/reminder_page)
 
 ### Progress Page
-![Progress Page Screenshot]()
+![Progress Page Screenshot](images/progress_page)
 
-### Progress Page
-![Settings Page Screenshot]()
+### Settings Page
+![Settings Page Screenshot](images/settings_page)
 
 

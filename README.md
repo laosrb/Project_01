@@ -28,18 +28,18 @@ Mobile App Development Project 1 (Ryan B, Tiffani S.)
 - [x] Iterative design – Test cases and approach to refine the improvements
 
 ## Screen
-![Wireframe Image](images/screen)
+![Wireframe Image](images/screen.png)
 
 ### Home Page
-![Home Page Screenshot](images/home_page)
+![Home Page Screenshot](images/home_page.png)
 
 ### Reminder Page
-![Settings Page Screenshot](images/reminder_page)
+![Settings Page Screenshot](images/reminder_page.png)
 
 ### Progress Page
-![Progress Page Screenshot](images/progress_page)
+![Progress Page Screenshot](images/progress_page.png)
 
 ### Settings Page
-![Settings Page Screenshot](images/settings_page)
+![Settings Page Screenshot](images/settings_page.png)
 
 

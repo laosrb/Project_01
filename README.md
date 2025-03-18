@@ -1,10 +1,21 @@
 # Project_01
 Mobile App Development Project 1 (Ryan B, Tiffani S.)
 
-
 ## Proposed Group Members:
 <ins>**Members**</ins>
 - [X] Ryan Bouapheng & Tiffani Singleton
+
+## Core Criteria:
+### Functionality
+All features work perfectly, no bugs, smooth user experience
+### User Interface (UI)
+Highly intuitive, visually appealing, and consistent. Font choice, size, and color are harmonious and enhance readability. Layout and typography are well-structured
+### Performance
+App performs smoothly with no lag or crashes
+### Documentation
+Documentation is thorough, covering all features and functions in detail. All sections are well-organized and complete
+### Feature Implementation
+All required features are fully implemented and work exactly as specified. Features interact smoothly, with no errors or unexpected behavior
 
 ## Project summary:
 <ins>**Habit Tracker App**</ins>
@@ -27,19 +38,14 @@ Mobile App Development Project 1 (Ryan B, Tiffani S.)
 - [x] User Experience - Proposed Use cases for each Screen
 - [x] Iterative design – Test cases and approach to refine the improvements
 
+## Features:
+- [ ] Day & Night Theme
+- [ ] aaa
+
 ## Screen
 ![Wireframe Image](images/screen.png)
 
-### Home Page
-![Home Page Screenshot](images/home_page.png)
-
-### Reminder Page
-![Settings Page Screenshot](images/reminder_page.png)
-
-### Progress Page
-![Progress Page Screenshot](images/progress_page.png)
-
-### Settings Page
-![Settings Page Screenshot](images/settings_page.png)
+## Test Cases:
+- [ ] Test case
 
 

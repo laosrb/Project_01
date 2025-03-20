@@ -4,11 +4,9 @@ Mobile App Development Project 1 (Ryan B, Tiffani S.)
 ## Proposed Group Members:
 Home Page
 
-## Screenshot
-![Home Page](home.png)
-
-## Project summary:
-5. Habit Tracker App
+## Page summary:
+Home Page
+- Display calendar of 
 - Daily Habit Logging: Users can log habits like exercise, reading, or drinking water.
 - Customizable Habits: Allow users to define their own habits.
 - Progress Overview: Simple charts or stats to track streaks.
@@ -24,3 +22,9 @@ https://github.com/laosrb/Project_01/
 - Functionality - Proposed Use case from transitioning from screen to screen.
 - User Experience - Proposed Use cases for each Screen
 - Iterative design – Test cases and approach to refine the improvements
+
+
+
+
+## Screenshot
+![Home Page](home.png)

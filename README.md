@@ -1,9 +1,11 @@
-# Project_01
+# Project_01 (HomePage
 Mobile App Development Project 1 (Ryan B, Tiffani S.)
 
-
 ## Proposed Group Members:
-Ryan Bouapheng & Tiffani Singleton
+Home Page
+
+## Screenshot
+![Home Page](home.png)
 
 ## Project summary:
 5. Habit Tracker App

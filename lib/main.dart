@@ -4,7 +4,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'utils/task.dart';
 import 'utils/task_dialog.dart';
 import 'pages/settings.dart';
-import 'pages/progress.dart';
+// import 'pages/progress.dart';
 
 void main() {
   runApp(const HabitTrackerApp());
@@ -38,7 +38,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Task> tasks = [
-    Task(title: 'Water plant', reminderTime: DateTime.now()),
+    Task(title: 'Wate plant', reminderTime: DateTime.now()),
     Task(title: 'Finish MAD project 1 proposal', reminderTime: DateTime.now().add(Duration(hours: 2))),
     Task(title: 'Fold laundry', reminderTime: DateTime.now().add(Duration(hours: 4))),
   ];
@@ -50,12 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
 
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ProgressScreen()),
-      );
-    }
+    // if (index == 1) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => const ProgressScreen()),
+    //   );
+    // }
 
     if (index == 2) {
       Navigator.push(

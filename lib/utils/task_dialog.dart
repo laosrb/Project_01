@@ -8,7 +8,7 @@ class TaskDialog extends StatefulWidget {
   TaskDialog({this.task, required this.onSave});
 
   @override
-  _TaskDialogState createState() => _TaskDialogState();
+  State<TaskDialog> createState() => _TaskDialogState();
 }
 
 class _TaskDialogState extends State<TaskDialog> {

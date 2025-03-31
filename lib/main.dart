@@ -1,89 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:table_calendar/table_calendar.dart' show TableCalendar;
-
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Habit Tracker App',
-//       theme: ThemeData(
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//       ),
-//       home: const MyHomePage(title: 'Habit Tracker App'),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text('You have pushed the button this many times:'),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headlineMedium,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }
-
-
-
+import 'package:table_calendar/table_calendar.dart';
+import 'utils/task.dart';
+import 'utils/task_dialog.dart';
+import 'pages/settings.dart';
+import 'pages/progress.dart';
 
 void main() {
   runApp(const HabitTrackerApp());
 
-  // @override
-  initializeDateFormatting().then((_) => runApp(HabitTrackerApp()));
+  initializeDateFormatting().then((_) => runApp(const HabitTrackerApp()));
 }
 
 class HabitTrackerApp extends StatelessWidget {
   const HabitTrackerApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,7 +27,6 @@ class HabitTrackerApp extends StatelessWidget {
   }
 }
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
 
@@ -107,23 +37,154 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Task> tasks = [
+    Task(title: 'Water plant', reminderTime: DateTime.now()),
+    Task(title: 'Finish MAD project 1 proposal', reminderTime: DateTime.now().add(Duration(hours: 2))),
+    Task(title: 'Fold laundry', reminderTime: DateTime.now().add(Duration(hours: 4))),
+  ];
+
+  int _selectedIndex = 0; // selected tab
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProgressScreen()),
+      );
+    }
+
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SettingsScreen()),
+      );
+    }
+  }
+
+
+  void _addTask(Task task) {
+    setState(() {
+      tasks.add(task);
+    });
+  }
+
+  void _editTask(int index, Task task) {
+    setState(() {
+      tasks[index] = task;
+    });
+  }
+
+  void _deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+
+  double _calculateProgress() {
+    if (tasks.isEmpty) return 0.0;
+    int completedTasks = tasks.where((task) => task.isCompleted).length;
+    return completedTasks / tasks.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Habit Tracker'),
+        title: Text(widget.title),
       ),
       body: Column(
         children: [
+          // Weekly Calendar
           TableCalendar(
             firstDay: DateTime.utc(2020, 10, 16),
             lastDay: DateTime.utc(2030, 3, 14),
             focusedDay: DateTime.now(),
+            calendarFormat: CalendarFormat.week,
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                // Update the state based on the selected day
+              });
+            },
           ),
-          // Add other widgets here
+          
+          // Today's To-Do List
+          Expanded(
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Checkbox(
+                    value: tasks[index].isCompleted,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        tasks[index].isCompleted = value ?? false;
+                      });
+                    },
+                  ),
+                  title: Text(tasks[index].title),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.edit),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => TaskDialog(
+                              task: tasks[index],
+                              onSave: (task) {
+                                _editTask(index, task);
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          _deleteTask(index);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          
+          // Daily Progress Bar Tracker
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: LinearProgressIndicator(
+              value: _calculateProgress(),
+              backgroundColor: Colors.grey[300],
+              color: Colors.blue,
+              minHeight: 10,
+            ),
+          ),
+          Text('Daily Progress: ${(_calculateProgress() * 100).toStringAsFixed(0)}%'),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => TaskDialog(
+              onSave: (task) {
+                _addTask(task);
+              },
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

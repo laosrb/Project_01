@@ -5,6 +5,10 @@ import 'utils/task.dart';
 import 'utils/task_dialog.dart';
 import 'pages/settings.dart';
 // import 'pages/progress.dart';
+// import 'pages/appearance.dart';
+
+// FIX PROGRESS.dart file so progress page will work
+// FIX appearance.dart file for light and dark theme
 
 void main() {
   runApp(const HabitTrackerApp());
@@ -50,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
 
+    // FIX
     // if (index == 1) {
     //   Navigator.push(
     //     context,

@@ -5,7 +5,7 @@ import 'utils/task.dart';
 import 'utils/task_dialog.dart';
 import 'pages/settings.dart';
 // import 'pages/progress.dart';
-// import 'pages/appearance.dart';
+import 'pages/appearance.dart';
 
 // FIX PROGRESS.dart file so progress page will work
 // FIX appearance.dart file for light and dark theme
@@ -23,9 +23,9 @@ class HabitTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Habit Tracker App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeData.light(), // Light theme
+      darkTheme: ThemeData.dark(), // Dark theme
+      themeMode: ThemeMode.system, // System-wide theme mode
       home: const HomeScreen(title: 'Habit Tracker App'),
     );
   }
@@ -42,7 +42,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Task> tasks = [
-    Task(title: 'Wate plant', reminderTime: DateTime.now()),
+    Task(title: 'Water plant', reminderTime: DateTime.now()),
     Task(title: 'Finish MAD project 1 proposal', reminderTime: DateTime.now().add(Duration(hours: 2))),
     Task(title: 'Fold laundry', reminderTime: DateTime.now().add(Duration(hours: 4))),
   ];

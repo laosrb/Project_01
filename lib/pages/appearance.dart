@@ -1,71 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'settings.dart';
+
 
 class AppearanceScreen extends StatefulWidget {
-  final ValueChanged<ThemeMode> onThemeChanged;
-
-  const AppearanceScreen({super.key, required this.onThemeChanged});
+  const AppearanceScreen({super.key});
 
   @override
   State<AppearanceScreen> createState() => _AppearanceScreenState();
 }
 
 class _AppearanceScreenState extends State<AppearanceScreen> {
-  ThemeMode _currentThemeMode = ThemeMode.light; // Default theme mode is light
+  bool _isDarkMode = false;
 
-  void _updateTheme(ThemeMode themeMode) {
+  @override
+  void initState() {
+    super.initState();
+    _loadThemePreference();
+  }
+
+  // Load the theme preference from shared preferences
+  Future<void> _loadThemePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _currentThemeMode = themeMode;
+      _isDarkMode = prefs.getBool('isDarkMode') ?? false;
     });
-    widget.onThemeChanged(themeMode);
+  }
+
+  // Save the theme preference to shared preferences
+  Future<void> _saveThemePreference(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkMode', value);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Appearance Settings"),
-        backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        title: const Text('Appearance'),
+        backgroundColor: Colors.white,
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('Light Theme'),
-            leading: Radio<ThemeMode>(
-              value: ThemeMode.light,
-              groupValue: _currentThemeMode,
-              onChanged: (value) {
-                if (value != null) _updateTheme(value);
-              },
-            ),
+      body: Center(
+        child: ListTile(
+          title: const Text('Dark Mode'),
+          trailing: Switch(
+            value: _isDarkMode,
+            onChanged: (bool value) {
+              setState(() {
+                _isDarkMode = value;
+              });
+              _saveThemePreference(value);
+              // Change theme immediately
+              if (_isDarkMode) {
+                _setDarkTheme();
+              } else {
+                _setLightTheme();
+              }
+            },
           ),
-          ListTile(
-            title: const Text('Dark Theme'),
-            leading: Radio<ThemeMode>(
-              value: ThemeMode.dark,
-              groupValue: _currentThemeMode,
-              onChanged: (value) {
-                if (value != null) _updateTheme(value);
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('System Default'),
-            leading: Radio<ThemeMode>(
-              value: ThemeMode.system,
-              groupValue: _currentThemeMode,
-              onChanged: (value) {
-                if (value != null) _updateTheme(value);
-              },
-            ),
-          ),
-        ],
+        ),
       ),
+    );
+  }
+
+  // Method to set the dark theme
+  void _setDarkTheme() {
+    ThemeData darkTheme = ThemeData.dark();
+    // Apply dark theme
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const SettingsScreen()),
+    );
+  }
+
+  // Method to set the light theme
+  void _setLightTheme() {
+    ThemeData lightTheme = ThemeData.light();
+    // Apply light theme
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const SettingsScreen()),
     );
   }
 }
